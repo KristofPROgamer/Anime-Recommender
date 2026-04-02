@@ -1,108 +1,91 @@
-````md
-# MAL Rater Stats
+Anime Recommender 5.0 (MAL Rater Stats)
+A robust, local anime recommendation web application featuring custom algorithm scoring, genre-based discovery, and seamless MyAnimeList (MAL) integration. Built to help you find exactly what to watch next without sifting through shows you've already seen.
 
-A local anime recommendation web app with user registration, email verification, and genre-based discovery.
+This project is currently in active development. The repository showcases the architecture, custom scoring workflow, and core functionality.
 
-This project is currently in active development and the public repo is meant to show the architecture, workflow, and core functionality.
+✨ Features
+Smart Discovery Engine: Filter by highly specific genres, themes, and demographics using AND/OR logic.
 
-## Features
+MAL Integration: Safely connect your MyAnimeList account (via local settings) to automatically exclude anime you've already watched or dropped.
 
-- User registration and verification
-- Local user storage
-- Anime database extraction from compressed data
-- Genre-based discovery and scoring logic
-- Helper script for setup, cleanup, and running the app
-- Environment-based configuration for local development
+Custom Algorithm: Ranks anime based on a weighted composite score of MAL ratings, global approval, and user engagement ratios.
 
-## Requirements
+Secure Authentication: Local user registration with password hashing and email verification (via Resend API, with local token fallback).
 
-- Python 3.10+
-- Dependencies from `requirements.txt` or `pyproject.toml`
+Automated Data Updates: Built-in scraper (database_updater.py) to pull the latest stats and shows from the Jikan API.
 
-## Repository Structure
+Developer Friendly: Includes a start.py utility script to handle virtual environments, dependencies, and database extraction automatically.
 
-- `frontend/` — frontend code
-- `server.py` — main web server
-- `start.py` — local helper script for setup and running
-- `logic.py` — scoring and recommendation logic
-- `auth.py` — registration and verification flow
-- `database_updater.py` — database refresh script
-- `config.py` — configuration values
-- `anime_database.json.gz` — compressed anime database
-- `.env.example` — example environment variables
+📸 Screenshots
+(Replace these placeholder links with actual paths to your images once you take them!)
 
-## Run Locally
+The main discovery dashboard and genre filtering interface.
 
-### 1. Copy environment variables
+Detailed, algorithmically sorted recommendation cards.
+
+📂 Project Structure
+Plaintext
+├── frontend/
+│   ├── index.html       # Main UI structure
+│   ├── app.js           # Client-side logic & API calls
+│   └── styles.css       # Custom styling and animations
+├── server.py            # Main Python web server & API router
+├── logic.py             # Recommendation engine and math algorithms
+├── auth.py              # User authentication & email verification logic
+├── database_updater.py  # Jikan API scraper to update the local DB
+├── start.py             # Helper script for one-click local setup
+├── config.py            # Global variables and genre mapping
+├── anime_database.json.gz # Compressed baseline anime database
+└── .env.example         # Template for environment variables
+🚀 Run Locally
+1. Configure Environment
+Copy the example environment file and fill in your details:
 
 Windows Command Prompt:
-```bat
+
+DOS
 copy .env.example .env
-````
+Mac/Linux/PowerShell:
 
-PowerShell:
-
-```powershell
+Bash
 cp .env.example .env
-```
+2. Install & Extract
+Use the built-in helper script to automatically create a virtual environment, install dependencies, and unpack the database:
 
-### 2. Install dependencies
-
-Using requirements:
-
-```bash
-python -m pip install -r requirements.txt
-```
-
-Or install the project package:
-
-```bash
-python -m pip install .
-```
-
-### 3. Start the app
-
-Run the server directly:
-
-```bash
-python server.py
-```
-
-Or use the helper script:
-
-```bash
+Bash
 python start.py install
+3. Start the Server
+Launch the application:
+
+Bash
 python start.py run
-```
+If your browser doesn't open automatically, navigate to http://localhost:8080.
 
-If the browser does not open automatically, visit:
+⚙️ Environment Variables
+Add these to your .env file to customize your instance:
 
-```text
-http://localhost:8080
-```
+PORT — HTTP port override (Default: 8080)
 
-## Environment Variables
+MAL_CLIENT_ID — Your MyAnimeList API client ID (for fetching user lists).
 
-Optional configuration:
+MAL_USERNAME — Default MyAnimeList username to exclude from results.
 
-* `PORT` — HTTP port override
-* `MAL_CLIENT_ID` — MyAnimeList API client ID
-* `MAL_USERNAME` — MyAnimeList username used for list exclusion
-* `RESEND_API_KEY` — optional email delivery key
-* `SITE_URL` — base URL used in verification links
+RESEND_API_KEY — (Optional) Key for sending verification emails. If left blank, the app will display the token on-screen.
 
-## Notes
+SITE_URL — Base URL used for verification links (Default: http://localhost:8080).
 
-* `anime_database.json` is extracted locally from `anime_database.json.gz`.
-* `users_db.json` is created and updated automatically at runtime.
-* If email delivery is unavailable, the verification token is returned in the registration response.
-* This repository is a work in progress and will continue to be updated.
+🗺️ Roadmap
+[x] Basic web server and UI architecture
 
-## License
+[x] Custom scoring algorithm and AND/OR filtering
 
+[x] Local user authentication and secure password hashing
+
+[ ] Implement user watchlists / "Save for later" feature directly in the app
+
+[ ] Add advanced filtering (Studio, Year/Season, Voice Actors)
+
+[ ] Create a Dockerfile for easier containerized deployment
+
+📝 License
 This project is licensed under the MIT License.
-
-```
-
-One small improvement: later, add a `Screenshots` section and a `Roadmap` section. That will make it look much more complete.
-```
