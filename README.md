@@ -1,4 +1,4 @@
-# Anime-Recommender-5.0
+# Anime-Recommender-0.1 Beta, WARNING THIS IS STILL IN DEVELOPMENT
 
 A local anime recommendation web app with user registration, email verification, and genre-based discovery.
 
