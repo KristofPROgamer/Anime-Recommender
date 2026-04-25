@@ -182,7 +182,7 @@ anime-recommender/
 ### Option A — Automated (recommended)
 
 ```bash
-git clone https://github.com/yourname/anime-recommender.git
+git clone https://github.com/KristofPROgamer/anime-recommender.git
 cd anime-recommender
 cp .env.example .env
 python start.py install
